@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated tP1_EM -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="tP1_EM.presentation.TP1_EMModelWizardID"
+            name="%_UI_TP1_EMModelWizard_label"
+            class="tP1_EM.presentation.TP1_EMModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/TP1_EMModelFile.gif">
+         <description>%_UI_TP1_EMModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated tP1_EM -->
+      <editor
+            id="tP1_EM.presentation.TP1_EMEditorID"
+            name="%_UI_TP1_EMEditor_label"
+            icon="icons/full/obj16/TP1_EMModelFile.gif"
+            extensions="tp1_em"
+            class="tP1_EM.presentation.TP1_EMEditor"
+            contributorClass="tP1_EM.presentation.TP1_EMActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
