@@ -17,6 +17,7 @@ import tP1_EM.Transition
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
  */
 class MyDslGenerator extends AbstractGenerator {
+	
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 //		fsa.generateFile('greetings.txt', 'People to greet: ' + 
@@ -210,5 +211,42 @@ public class StateMachine {
 		this.transitions = transitions;
 	}
 }'
+	}
+}
+
+@Aspect(className=StateMachine)
+class FSMAspect {
+	public State currentState
+}
+
+@Aspect(className=State)
+class StateAspect {
+	@Step
+	def public void step(String inputString) {
+		// Get the valid transitions
+		val validTransitions = _self.outgoing.filter[t | inputString.compareTo(t.trigger) == 0]
+		
+		if (validTransitions.empty) {
+			throw new Exception("Non Determinism")
+		}
+		
+		// Fire transition first transition (could be random%VT.size)
+		if(validTransitions.size > 0) {
+			validTransitions.get(0).fire
+			return
+		}
+		return
+	}
+}
+
+@Aspect(className=Transition)
+class TransitionAspect {
+	@Step
+	def public void fire(){
+		println("Firing "+_self.name + " and entering " + _self.tgt.name)
+		val fsm = _self.src.fsm
+		fsm.currentState = _self.tgt
+		fsm.outputBuffer.enqueue(_self.action)
+		fsm.consummedString = fsm.consummedString + fsm.underProcessTrigger
 	}
 }

@@ -13,6 +13,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute tP1_EM.ecore#//StateMachine/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference tP1_EM.ecore#//StateMachine/transition"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference tP1_EM.ecore#//StateMachine/state"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference tP1_EM.ecore#//StateMachine/initialState"/>
     </genClasses>
     <genClasses ecoreClass="tP1_EM.ecore#//State">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute tP1_EM.ecore#//State/name"/>
